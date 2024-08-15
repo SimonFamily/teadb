@@ -1,4 +1,4 @@
-package com.file;
+package com.teadb.file;
 
 public class BlockId {
    private String filename;

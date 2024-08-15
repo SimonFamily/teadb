@@ -1,4 +1,4 @@
-package com.file;
+package com.teadb.file;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.*;
