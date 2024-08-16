@@ -6,24 +6,24 @@ import com.teadb.file.Page;
 import com.teadb.server.TeaDB;
 
 public class LogTest {
-	private static LogMgr lm;
+	private static LogMgr logMgr;
 
 	public static void main(String[] args) {
 		TeaDB db = new TeaDB("logtest", 1024, 8);
-		lm = db.logMgr();
+		logMgr = db.logMgr();
 
 		printLogRecords("The initial empty log file:"); // print an empty log file
 		System.out.println("done");
 		createRecords(1, 35);
 		printLogRecords("The log file now has these records:");
 		createRecords(36, 70);
-		lm.flush(65);
+		logMgr.flush(65);
 		printLogRecords("The log file now has these records:");
 	}
 
 	private static void printLogRecords(String msg) {
 		System.out.println(msg);
-		Iterator<byte[]> iter = lm.iterator();
+		Iterator<byte[]> iter = logMgr.iterator();
 		while (iter.hasNext()) {
 			byte[] rec = iter.next();
 			Page p = new Page(rec);
@@ -39,7 +39,7 @@ public class LogTest {
 		System.out.print("Creating records: ");
 		for (int i = start; i <= end; i++) {
 			byte[] rec = createLogRecord("record" + i, i + 100);
-			int lsn = lm.append(rec);
+			int lsn = logMgr.append(rec);
 			System.out.print(lsn + " ");
 		}
 		System.out.println();
