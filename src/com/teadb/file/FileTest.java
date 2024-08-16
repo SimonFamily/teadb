@@ -2,10 +2,12 @@ package com.teadb.file;
 
 import java.io.File;
 
+import com.teadb.server.TeaDB;
+
 public class FileTest {
 	public static void main(String[] args) {
-		File dbDirectory = new File("filetestDB");
-		FileMgr fm = new FileMgr(dbDirectory, 400);
+		TeaDB db = new TeaDB("logtest", 400, 8);
+		FileMgr fm = db.fileMgr();
 		BlockId blk = new BlockId("testfile", 2);
 		int pos1 = 88;
 
