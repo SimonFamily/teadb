@@ -2,6 +2,7 @@ package com.teadb.server;
 
 import java.io.File;
 
+import com.teadb.buffer.BufferMgr;
 import com.teadb.file.FileMgr;
 import com.teadb.log.LogMgr;
 
@@ -11,6 +12,7 @@ public class TeaDB {
 	public static String LOG_FILE = "teadb.log";
 
 	private FileMgr fm;
+	private  BufferMgr   bm;
 	private LogMgr lm;
 
 	/**
@@ -24,6 +26,7 @@ public class TeaDB {
 		File dbDirectory = new File(dirname);
 		fm = new FileMgr(dbDirectory, blocksize);
 		lm = new LogMgr(fm, LOG_FILE);
+		bm = new BufferMgr(fm, lm, buffsize); 
 	}
 
 	public FileMgr fileMgr() {
@@ -32,5 +35,9 @@ public class TeaDB {
 
 	public LogMgr logMgr() {
 		return lm;
+	}
+	
+	public BufferMgr bufferMgr() {
+		return bm;
 	}
 }
