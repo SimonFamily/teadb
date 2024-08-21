@@ -31,6 +31,16 @@ public class TeaDB {
 	}
 
 	/**
+	 * A simpler constructor for most situations. Unlike the 3-arg constructor, it
+	 * also initializes the metadata tables.
+	 * 
+	 * @param dirname the name of the database directory
+	 */
+	public TeaDB(String dirname) {
+		this(dirname, BLOCK_SIZE, BUFFER_SIZE);
+	}
+
+	/**
 	 * A convenient way for clients to create transactions and access the metadata.
 	 */
 	public Transaction newTx() {
