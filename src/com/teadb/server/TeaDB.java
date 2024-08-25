@@ -12,9 +12,9 @@ import com.teadb.plan.*;
  * The class that configures the system.
  */
 public class TeaDB {
-   public static int BLOCK_SIZE = 400;
+   public static int BLOCK_SIZE = 1024;
    public static int BUFFER_SIZE = 8;
-   public static String LOG_FILE = "simpledb.log";
+   public static String LOG_FILE = "teadb.log";
 
    private  FileMgr     fm;
    private  BufferMgr   bm;
